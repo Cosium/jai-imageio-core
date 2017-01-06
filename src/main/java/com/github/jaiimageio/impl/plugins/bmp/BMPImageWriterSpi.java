@@ -57,11 +57,15 @@ import javax.imageio.IIOException;
 
 import java.util.Locale;
 
+import com.github.jaiimageio.impl.common.ClassLoaderUtils;
 import com.github.jaiimageio.impl.common.ImageUtil;
 import com.github.jaiimageio.impl.common.PackageUtil;
 import com.github.jaiimageio.plugins.bmp.BMPImageWriteParam;
 
 public class BMPImageWriterSpi extends ImageWriterSpi {
+
+    private final ClassLoaderUtils classLoaderUtils = ClassLoaderUtils.getInstance();
+
     private static String [] readerSpiNames =
         {"com.github.jaiimageio.impl.plugins.bmp.BMPImageReaderSpi"};
     private static String[] formatNames = {"bmp", "BMP"};
@@ -110,6 +114,9 @@ public class BMPImageWriterSpi extends ImageWriterSpi {
     }
 
     public boolean canEncodeImage(ImageTypeSpecifier type) {
+        if (!classLoaderUtils.wasLoadedByCurrentClassLoader(this)) {
+            return false;
+        }
         int dataType= type.getSampleModel().getDataType();
         if (dataType < DataBuffer.TYPE_BYTE || dataType > DataBuffer.TYPE_INT)
             return false;

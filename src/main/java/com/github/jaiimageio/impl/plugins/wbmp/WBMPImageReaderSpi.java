@@ -56,10 +56,13 @@ import java.io.IOException;
 import javax.imageio.ImageReader;
 import javax.imageio.IIOException;
 
+import com.github.jaiimageio.impl.common.ClassLoaderUtils;
 import com.github.jaiimageio.impl.common.ImageUtil;
 import com.github.jaiimageio.impl.common.PackageUtil;
 
 public class WBMPImageReaderSpi extends ImageReaderSpi {
+
+    private final ClassLoaderUtils classLoaderUtils = ClassLoaderUtils.getInstance();
 
     private static String [] writerSpiNames =
         {"com.github.jaiimageio.impl.plugins.wbmp.WBMPImageWriterSpi"};
@@ -107,6 +110,9 @@ public class WBMPImageReaderSpi extends ImageReaderSpi {
     }
 
     public boolean canDecodeInput(Object source) throws IOException {
+        if (!classLoaderUtils.wasLoadedByCurrentClassLoader(this)) {
+            return false;
+        }
         if (!(source instanceof ImageInputStream)) {
             return false;
         }

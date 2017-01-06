@@ -51,6 +51,7 @@ import javax.imageio.stream.ImageInputStream;
 import javax.imageio.spi.IIORegistry;
 import javax.imageio.spi.ServiceRegistry;
 
+import com.github.jaiimageio.impl.common.ClassLoaderUtils;
 import java.io.IOException;
 
 import javax.imageio.ImageReader;
@@ -60,6 +61,8 @@ import com.github.jaiimageio.impl.common.PackageUtil;
 import com.github.jaiimageio.stream.RawImageInputStream;
 
 public class RawImageReaderSpi extends ImageReaderSpi {
+
+    private final ClassLoaderUtils classLoaderUtils = ClassLoaderUtils.getInstance();
 
     private static String [] writerSpiNames =
         {"com.github.jaiimageio.impl.plugins.raw.RawImageWriterSpi"};
@@ -99,6 +102,10 @@ public class RawImageReaderSpi extends ImageReaderSpi {
     }
 
     public boolean canDecodeInput(Object source) throws IOException {
+        if (!classLoaderUtils.wasLoadedByCurrentClassLoader(this)) {
+            return false;
+        }
+
         if (!(source instanceof RawImageInputStream)) {
             return false;
         }
