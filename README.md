@@ -1,7 +1,7 @@
 jai-imageio-core (standalone)
 =============================
 
-[![Build Status](https://travis-ci.org/jai-imageio/jai-imageio-core.svg)](https://travis-ci.org/jai-imageio/jai-imageio-core)
+[![Build Status](https://travis-ci.org/Cosium/jai-imageio-core.svg?branch=master)](https://travis-ci.org/Cosium/jai-imageio-core)
 
 NOTE: This is a fork of the
 [original jai-imageio-core](https://java.net/projects/jai-imageio-core/)
