@@ -4,7 +4,7 @@
   <prerequisites>
     <maven>2.2.1</maven>
   </prerequisites>
-  <groupId>com.github.jai-imageio</groupId>
+  <groupId>com.cosium.jai-imageio</groupId>
   <artifactId>jai-imageio-core</artifactId>
   <version>1.3.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
@@ -15,10 +15,10 @@
     codecLibJIIO, meaning that this library can be distributed under the 
     modified BSD license and should be GPL compatible.
   </description>
-  <url>https://github.com/jai-imageio/jai-imageio-core</url>
+  <url>https://github.com/Cosium/jai-imageio-core</url>
   <organization>
-    <name>jai-imageio GitHub group</name>
-    <url>https://github.com/jai-imageio/</url>
+    <name>Cosium</name>
+    <url>https://github.com/Cosium/</url>
   </organization>
   <licenses>
     <license>
@@ -283,10 +283,9 @@
     </plugins>
   </reporting>
   <scm>
-    <connection>scm:git:git://github.com/jai-imageio/jai-imageio-core.git</connection>
-    <developerConnection>scm:git:git@github.com:jai-imageio/jai-imageio-core.git</developerConnection>
-    <url>https://github.com/jai-imageio/jai-imageio-core/</url>
-    <tag>HEAD</tag>
+    <connection>scm:git:https://github.com/Cosium/jai-imageio-core</connection>
+    <developerConnection>scm:git:https://github.com/Cosium/jai-imageio-core</developerConnection>
+    <url>https://github.com/Cosium/jai-imageio-core</url>
   </scm>
 
   <developers>
@@ -340,18 +339,28 @@
         <role>developer</role>
       </roles>
     </contributor>
+    <contributor>
+      <name>Réda Housni Alaoui</name>
+      <url>https://github.com/reda-alaoui</url>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </contributor>
   </contributors>
 
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/jai-imageio/jai-imageio-core/issues</url>
+    <url>https://github.com/Cosium/jai-imageio-core/issues</url>
   </issueManagement>
 
   <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
     <repository>
-      <id>bintray-jai-imageio-maven-jai-imageio-core-standalone</id>
-      <name>jai-imageio-maven-jai-imageio-core-standalone</name>
-      <url>https://api.bintray.com/maven/jai-imageio/maven/jai-imageio-core-standalone</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
 
