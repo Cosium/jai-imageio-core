@@ -51,9 +51,12 @@ import javax.imageio.*;
 import javax.imageio.spi.*;
 import javax.imageio.stream.ImageInputStream;
 
+import com.github.jaiimageio.impl.common.ClassLoaderUtils;
 import com.github.jaiimageio.impl.common.PackageUtil;
 
 public class PCXImageReaderSpi extends ImageReaderSpi {
+
+    private final ClassLoaderUtils classLoaderUtils = ClassLoaderUtils.getInstance();
 
     private static String [] writerSpiNames =
         {"com.github.jaiimageio.impl.plugins.pcx.PCXImageWriterSpi"};
@@ -95,6 +98,9 @@ public class PCXImageReaderSpi extends ImageReaderSpi {
     }
 
     public boolean canDecodeInput(Object source) throws IOException {
+        if (!classLoaderUtils.wasLoadedByCurrentClassLoaderAncestor(this)) {
+            return false;
+        }
         if (!(source instanceof ImageInputStream)) {
             return false;
         }
